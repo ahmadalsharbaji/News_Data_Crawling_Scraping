@@ -2,6 +2,8 @@
 # Overview
 This project is designed to scrape and collect news data specifically from the BBC News website. It uses Python with Scrapy for web scraping, FastAPI for serving API endpoints, and MongoDB for data storage.
 
+Hosted version on Azure Cloud. For a step-by-step guide, please refer to the screenshots provided in the repository.
+
 # Features
 - Scraping headlines, summaries, and URLs from news homepages.
 - Scraping full articles including text and author information.
