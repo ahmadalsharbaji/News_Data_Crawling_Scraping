@@ -7,6 +7,9 @@ from fastapi import FastAPI, HTTPException, Query
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
 
+from dataen.news_spider import ArticleSpider
+from dataen.news_spider import NewsSpider
+
 # Initialize FastAPI app
 app = FastAPI()
 
@@ -25,7 +28,6 @@ def index():
 
 def run_spider(url):
     # Function to run the news spider
-    from news_spider import NewsSpider
     process = CrawlerProcess(get_project_settings())
     process.crawl(NewsSpider, start_urls=[url])
     process.start()
@@ -52,7 +54,6 @@ def crawl_url(url: str):
 
 def run_spider_article(url):
     # Function to run the article spider
-    from news_spider import ArticleSpider
     process = CrawlerProcess(get_project_settings())
     process.crawl(ArticleSpider, url=url)
     process.start()
