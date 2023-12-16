@@ -1,8 +1,10 @@
 # Import necessary libraries
 import logging
+import os
 from multiprocessing import Process
 
 import pymongo
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException, Query
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
@@ -10,11 +12,14 @@ from scrapy.utils.project import get_project_settings
 from dataen.news_spider import ArticleSpider
 from dataen.news_spider import NewsSpider
 
+# Load the environment file
+load_dotenv("env/news.env")
+
 # Initialize FastAPI app
 app = FastAPI()
 
 # MongoDB's connection details
-mongo_conn_str = "mongodb+srv://ahmad:qwerasdf@pythoncluster.mhzcs.mongodb.net/test?authSource=admin&replicaSet=atlas-14oj08-shard-0&readPreference=primary&ssl=true"
+mongo_conn_str = os.getenv('MONGO_CONN_STR')
 client = pymongo.MongoClient(mongo_conn_str)
 db = client["news"]
 collection = db["crawled_news"]
